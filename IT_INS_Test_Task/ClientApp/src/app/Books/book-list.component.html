@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Список книг</h1>
+
+  <div class="form-group">
+    <input [(ngModel)]="searchText" (keyup)="onSearch()" type="text" class="form-control"
+      placeholder="Пошук за назвою книги" />
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Назва</th>
+        <th>Дата публікації</th>
+        <th>Кількість сторінок</th>
+        <th>Опції</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of filteredBooks; let i = index" style="margin: 10px;">
+        <td>{{ book.title }}</td>
+        <td>{{ book.publicationDate | date: 'dd.MM.yyyy' }}</td>
+        <td>{{ book.pageCount }}</td>
+        <td>
+          <button class="btn btn-primary" style="margin-right: 10px;" (click)="openUpdateBookModal(book)">
+            Редагувати
+          </button>
+          <button class="btn btn-danger" (click)="deleteBook(book.id)">
+            Видалити
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="form-group" style="margin-bottom: 10px;">
+    <label for="startDate">Дата початку:</label>
+    <input type="text" class="form-control" id="startDate" bsDatepicker [bsConfig]="bsConfig" [(bsValue)]="startDate">
+  </div>
+  <div class="form-group">
+    <label for="endDate">Дата закінчення:</label>
+    <input type="text" class="form-control" id="endDate" bsDatepicker [bsConfig]="bsConfig" [(bsValue)]="endDate">
+  </div>
+  <button class="btn btn-primary" style="margin: 10px;" (click)="filterByDateRange()">Фільтрувати</button>
+
+  <!-- <div class="form-group">
+      <label>Фільтр за датою публікації:</label>
+      <select class="form-control" [(ngModel)]="selectedFilter" (change)="applyFilters()">
+        <option value="all">Усі</option>
+        <option value="thisMonth">За цей місяць</option>
+        <option value="thisYear">За цей рік</option>
+      </select>
+    </div> -->
+
+  <button class="btn btn-success" (click)="openAddBookModal()">Додати книгу</button>
+</div>

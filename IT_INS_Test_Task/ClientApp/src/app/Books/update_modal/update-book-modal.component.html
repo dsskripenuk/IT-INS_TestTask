@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title">Update Book</h4>
+  <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="updateBookForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Назва книги</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="newBook.title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="publicationDate">Дата публікації</label>
+      <input type="date" class="form-control" id="publicationDate" [(ngModel)]="newBook.publicationDate"
+        name="publicationDate">
+    </div>
+    <div class="form-group">
+      <label for="description">Опис</label>
+      <textarea class="form-control" id="description" [(ngModel)]="newBook.description" name="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="pageCount">Кількість сторінок</label>
+      <input type="number" class="form-control" id="pageCount" [(ngModel)]="newBook.pageCount" name="pageCount">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Book</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cancel click')">Cancel</button>
+</div>
